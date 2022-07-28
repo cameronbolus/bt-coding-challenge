@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import './App.scss';
 class App extends React.Component {
 
 	// Constructor - initializing state
@@ -29,22 +29,35 @@ class App extends React.Component {
 	}
 	render() {
 		const { DataisLoaded, items } = this.state;
-		if (!DataisLoaded) return <div>//if data isn't loading, this will show
+		if (!DataisLoaded) return <div>
 			<h1> Loading... </h1> </div> ;
 
 		return (
 		<div className = "App">
-			<h1> repos_url: </h1> {
-				items.map((item) => (
-				<ul key = { item.id } >
-					<li>id: { item.id },</li>
-					<li>name: { item.name },</li>
-					<li>description: { item.description }</li>
-          <li>created_at: { item.created_at }</li>
-          <li>updated_at: { item.updated_at }</li>
-					</ul>
-				))
-			}
+
+			<h1> repos_url: </h1>
+				<table >
+					<tbody>
+						<tr className="table-header">
+							<th>Id</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Created at</th>
+							<th>Updated at</th>
+						</tr>
+						{items.map((item) => (
+							<tr key = { item.id } className="data">
+								<td className="id">{ item.id }</td>
+								<td>{ item.name }</td>
+								<td>{ item.description }</td>
+								<td>{ item.created_at }</td>
+								<td>{ item.updated_at }</td>
+							</tr>
+						))
+					}
+						</tbody>
+					</table>
+
 
 		</div>
 	);
